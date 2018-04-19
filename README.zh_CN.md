@@ -58,7 +58,7 @@ exports.cache = {
 ## 使用
 
 ```js
-await app.cache.set('name', 'abel', 60);
+await app.cache.set('name', 'abel', 60, { foo: 'bar' });
 
 await app.cache.get('name'); // 'abel'
 
