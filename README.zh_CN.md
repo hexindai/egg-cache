@@ -24,7 +24,7 @@
 
 ## 安装
 
-```shell
+```sh
 npm i egg-cache --save
 
 // or
@@ -81,26 +81,26 @@ await store.set('name', 'abel');
 #### cache.set(name, value, [expire=null], [options=null]);
 
 设置缓存
- - name 缓存名称
- - value 缓存值
- - expire (可选) 有效期（默认会取相关 store 的配置，单位：秒， 0 为永不过期）
- - options 配置（memory store 参考：[cache-manager 的源码](https://github.com/BryanDonovan/node-cache-manager/blob/master/lib/stores/memory.js#L14-L18))
+ - `name` 缓存名称
+ - `value` 缓存值
+ - `expire` (可选) 有效期（默认会取相关 store 的配置，单位：秒， `0` 为永不过期）
+ - `options` 配置（memory store 参考：[cache-manager 的源码](https://github.com/BryanDonovan/node-cache-manager/blob/master/lib/stores/memory.js#L14-L18))
 
 #### cache.get(name, [defaultValue=null]);
 
 获取缓存
- - name 缓存名称
- - defaultValue (可选) 默认值
+ - `name` 缓存名称
+ - `defaultValue` (可选) 默认值
 
 #### cache.del(name);
 
 删除缓存
- - name 缓存名称
+ - `name` 缓存名称
 
 #### cache.store(name, [options=null]);
 
 获取自定义 store
- - name Store 名称
+ - `name` Store 名称
 
 ## 详细配置
 
