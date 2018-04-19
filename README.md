@@ -111,7 +111,7 @@ Set Cache
  - `name` cache name
  - `value` cache value
  - `expire` (Optional) expire（default from config file，the unit is second， `0` means *nerver* expire）
- - `options` (Optional) Refer to [cache-manager 的源码](https://github.com/BryanDonovan/node-cache-manager/blob/master/lib/stores/memory.js#L14-L18))
+ - `options` (Optional) Refer to [cache-manager](https://github.com/BryanDonovan/node-cache-manager/blob/master/lib/stores/memory.js#L14-L18))
 
 #### cache.get(name, [defaultValue=null, expire=null, options=null]);
 
