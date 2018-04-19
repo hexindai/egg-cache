@@ -20,30 +20,19 @@
 [download-image]: https://img.shields.io/npm/dm/egg-cache.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-cache
 
-<!--
-Description here.
--->
+基于 [cache-manager](https://github.com/BryanDonovan/node-cache-manager) 开发的可扩展的缓存组件
 
-## 依赖说明
+## 安装
 
-### 依赖的 egg 版本
+```shell
+npm i egg-cache --save
 
-egg-cache 版本 | egg 1.x
---- | ---
-1.x | 😁
-0.x | ❌
+// or
 
-### 依赖的插件
-<!--
+yarn add egg-cache
+```
 
-如果有依赖其它插件，请在这里特别说明。如
-
-- security
-- multipart
-
--->
-
-## 开启插件
+## 配置
 
 ```js
 // config/plugin.js
@@ -53,11 +42,65 @@ exports.cache = {
 };
 ```
 
-## 使用场景
+```js
+// config/config.default.js
+exports.cache = {
+  default: 'memory',
+  stores: {
+    memory: {
+      driver: 'memory',
+      max: 100,
+      ttl: 0,
+    },
+  },
+};
+```
+## 使用
 
-- Why and What: 描述为什么会有这个插件，它主要在完成一件什么事情。
-尽可能描述详细。
-- How: 描述这个插件是怎样使用的，具体的示例代码，甚至提供一个完整的示例，并给出链接。
+```js
+await app.cache.set('name', 'abel', 60);
+
+await app.cache.get('name');  // abel
+
+await app.cache.del('name');
+await app.cache.get('name', 'defaultName');  // defaultName
+```
+
+### Store
+
+暂时只支持 memory，更多的 store 将会以扩展包的形式开发，便于自主选择
+
+```js
+const store = app.cache.store('memory');
+
+await store.set('name', 'abel');
+```
+
+### Api
+
+#### cache.set(name, value, [expire=null], [options=null]);
+
+设置缓存
+ - name 缓存名称
+ - value 缓存值
+ - expire (可选) 有效期（默认会取相关 store 的配置，单位：秒， 0 为永不过期）
+ - options 配置（memory store 参考：[cache-manager 的源码](https://github.com/BryanDonovan/node-cache-manager/blob/master/lib/stores/memory.js#L14-L18))
+
+#### cache.get(name, [defaultValue=null]);
+
+获取缓存
+ - name 缓存名称
+ - defaultValue (可选) 默认值
+
+#### cache.del(name);
+
+删除缓存
+ - name 缓存名称
+
+#### cache.store(name, [options=null]);
+
+获取自定义 store
+ - name Store 名称
 
 ## 详细配置
 
@@ -65,11 +108,13 @@ exports.cache = {
 
 ## 单元测试
 
-<!-- 描述如何在单元测试中使用此插件，例如 schedule 如何触发。无则省略。-->
+```sh
+npm test
+```
 
 ## 提问交流
 
-请到 [egg issues](https://github.com/eggjs/egg/issues) 异步交流。
+请到 [Issues](issues) 交流。
 
 ## License
 

@@ -47,6 +47,17 @@ describe('test/cache.test.js', () => {
     assert(value === 'default-name');
   });
 
+  it('should return null when deleted', async () => {
+    let value = await app.cache.set('name', 'abel');
+    assert(value === 'abel');
+
+    await app.cache.del('name');
+
+    value = await app.cache.get('name');
+
+    assert(value === null);
+  });
+
   it('should return the custom store', async () => {
     const config = app.config.cache.stores.memory;
 
