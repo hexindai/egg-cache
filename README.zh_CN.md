@@ -114,7 +114,7 @@ npm test
 
 ## 提问交流
 
-请到 [Issues](issues) 交流。
+请到 [Issues](https://github.com/Runrioter/egg-cache/issues) 交流。
 
 ## License
 
