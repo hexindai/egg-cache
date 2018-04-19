@@ -9,12 +9,12 @@
 
 [npm-image]: https://img.shields.io/npm/v/egg-cache.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-cache
-[travis-image]: https://img.shields.io/travis/eggjs/egg-cache.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-cache
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-cache.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-cache?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-cache.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-cache
+[travis-image]: https://img.shields.io/travis/Runrioter/egg-cache.svg?style=flat-square
+[travis-url]: https://travis-ci.org/Runrioter/egg-cache
+[codecov-image]: https://img.shields.io/codecov/c/github/Runrioter/egg-cache.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/Runrioter/egg-cache?branch=master
+[david-image]: https://img.shields.io/david/Runrioter/egg-cache.svg?style=flat-square
+[david-url]: https://david-dm.org/Runrioter/egg-cache
 [snyk-image]: https://snyk.io/test/npm/egg-cache/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/egg-cache
 [download-image]: https://img.shields.io/npm/dm/egg-cache.svg?style=flat-square
