@@ -10,7 +10,9 @@
     "eggPlugin",
     "egg-plugin"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "cache-manager": "^2.9.0"
+  },
   "devDependencies": {
     "autod": "^3.0.0",
     "autod-egg": "^1.0.0",
@@ -35,9 +37,9 @@
     "autod": "autod"
   },
   "files": [
+    "config",
     "app.js",
-    "agent.js",
-    "config"
+    "lib"
   ],
   "ci": {
     "version": "8, 9"
