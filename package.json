@@ -1,6 +1,6 @@
 {
   "name": "egg-cache",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Cache plugin for Egg",
   "eggPlugin": {
     "name": "cache"

@@ -130,6 +130,7 @@ exports.cache = {
       password: '',
       db: 0,
       ttl: 600,
+      valid: _ => _ !== null,
     },
   },
 };
@@ -141,7 +142,10 @@ exports.cache = {
 const store = app.cache.store('redis');
 
 await store.set('foo', 'bar');
-await store.get('foo'); // bar
+await store.get('foo'); // 'bar'
+
+await store.del('foo');
+await store.has('foo'); // false
 ```
 
 ### Api
