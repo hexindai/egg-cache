@@ -20,15 +20,21 @@
 [download-image]: https://img.shields.io/npm/dm/egg-cache.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-cache
 
-基于 [cache-manager](https://github.com/BryanDonovan/node-cache-manager) 开发的可扩展的缓存组件
+基于 [cache-manager](https://github.com/BryanDonovan/node-cache-manager)
+
+通过简单的配置就可以直接使用基于 [cache-manager](https://github.com/BryanDonovan/node-cache-manager) 开发的 store
+* [支持的 Store 列表](https://github.com/BryanDonovan/node-cache-manager#store-engines)
+* [配置参考](#添加-store)
 
 ## 安装
 
 ```sh
 npm i egg-cache --save
+```
 
-// or
+或
 
+```sh
 yarn add egg-cache
 ```
 
@@ -95,14 +101,44 @@ await app.cache.get('foo', () => {
 await app.cache.get('foo'); // 'bar'
 ```
 
-### Store
+### 添加 Store
 
-暂时只支持 memory，更多的 store 将会以扩展包的形式开发，便于自主选择
+使用基于 `redis` 的 store ：
+
+1. 配置中，`store` 都使用 `driver` 代替，其它的配置不变
 
 ```js
-const store = app.cache.store('memory');
+// config/config.default.js
+
+const redisStore = require('cache-manager-ioredis');
+
+exports.cache = {
+  default: 'memory',
+  stores: {
+    memory: {
+      driver: 'memory',
+      max: 100,
+      ttl: 0,
+    },
+    redis: { // 配置参考: https://github.com/dabroek/node-cache-manager-ioredis#single-store
+      driver: redisStore,
+      host: 'localhost',
+      port: 6379,
+      password: '',
+      db: 0,
+      ttl: 600,
+    },
+  },
+};
+```
+
+2. 使用
+
+```js
+const store = app.cache.store('redis');
 
 await store.set('foo', 'bar');
+await store.get('foo'); // bar
 ```
 
 ### Api
