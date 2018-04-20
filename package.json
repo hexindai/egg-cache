@@ -46,12 +46,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Runrioter/egg-cache.git"
+    "url": "git+https://github.com/hexindai/egg-cache.git"
   },
   "bugs": {
-    "url": "https://github.com/Runrioter/egg-cache/issues"
+    "url": "https://github.com/hexindai/egg-cache/issues"
   },
-  "homepage": "https://github.com/Runrioter/egg-cache#readme",
+  "homepage": "https://github.com/hexindai/egg-cache#readme",
   "author": "Runrioter Wung <runrioter@gmail.com>",
   "license": "MIT"
 }
