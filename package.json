@@ -1,6 +1,6 @@
 {
   "name": "egg-cache",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cache plugin for Egg",
   "eggPlugin": {
     "name": "cache"
@@ -52,6 +52,15 @@
     "url": "https://github.com/hexindai/egg-cache/issues"
   },
   "homepage": "https://github.com/hexindai/egg-cache#readme",
-  "author": "Runrioter Wung <runrioter@gmail.com>",
+  "contributors": [
+    {
+      "name": "Runrioter Wung",
+      "email": "runrioter@gmail.com"
+    },
+    {
+      "name": "seekcx",
+      "email": "abel@seek.cx"
+    }
+  ],
   "license": "MIT"
 }
