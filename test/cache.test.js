@@ -123,4 +123,29 @@ describe('test/cache.test.js', () => {
 
     assert(hasError);
   });
+
+  it('should clear the cache', async () => {
+    await Promise.all([
+      app.cache.set('foo', 'bar'),
+      app.cache.set('bar', 'foo'),
+    ]);
+
+    let [ foo, bar ] = await Promise.all([
+      app.cache.get('foo'),
+      app.cache.get('bar'),
+    ]);
+
+    assert(foo === 'bar');
+    assert(bar === 'foo');
+
+    await app.cache.reset();
+
+    [ foo, bar ] = await Promise.all([
+      app.cache.get('foo'),
+      app.cache.get('bar'),
+    ]);
+
+    assert(foo === null);
+    assert(bar === null);
+  });
 });
