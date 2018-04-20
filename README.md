@@ -22,6 +22,10 @@
 
 Based on [cache-manager](https://github.com/BryanDonovan/node-cache-manager)
 
+All store engine based on [cache-manager](https://github.com/BryanDonovan/node-cache-manager) can be used.
+* [Store engine](https://github.com/BryanDonovan/node-cache-manager#store-engines)
+* [Configuration reference](#store)
+
 [中文文档](README.zh_CN.md)
 
 ## Installation
@@ -96,14 +100,42 @@ await app.cache.get('foo'); // 'bar'
 await app.cache.reset();
 ```
 
-### Store
+### Add store
 
-Currently just support memory
+1. config: the `store` in the configuration uses the `driver` instead.
 
 ```js
-const store = app.cache.store('memory');
+// config/config.default.js
+
+const redisStore = require('cache-manager-ioredis');
+
+exports.cache = {
+  default: 'memory',
+  stores: {
+    memory: {
+      driver: 'memory',
+      max: 100,
+      ttl: 0,
+    },
+    redis: { // full config: https://github.com/dabroek/node-cache-manager-ioredis#single-store
+      driver: redisStore,
+      host: 'localhost',
+      port: 6379,
+      password: '',
+      db: 0,
+      ttl: 600,
+    },
+  },
+};
+```
+
+2. usage
+
+```js
+const store = app.cache.store('redis');
 
 await store.set('foo', 'bar');
+await store.get('foo'); // bar
 ```
 
 ### Api
