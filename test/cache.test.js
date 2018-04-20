@@ -20,21 +20,21 @@ describe('test/cache.test.js', () => {
   afterEach(mock.restore);
 
   it('should set/get the value to memory', async () => {
-    await app.cache.set('name', 'abel');
-    const value = await app.cache.get('name');
+    await app.cache.set('foo', 'bar');
+    const value = await app.cache.get('foo');
 
-    assert(value === 'abel');
+    assert(value === 'bar');
   });
 
   it('should cannot get value after expired', async () => {
-    await app.cache.set('name', 'abel', 1); // expires after 1 second
-    const value = await app.cache.get('name');
+    await app.cache.set('foo', 'bar', 1); // expires after 1 second
+    const value = await app.cache.get('foo');
 
-    assert(value === 'abel');
+    assert(value === 'bar');
 
     const nullValue = await new Promise(resolve => {
       setTimeout(() => {
-        resolve(app.cache.get('name'));
+        resolve(app.cache.get('foo'));
       }, 1500);
     });
 
@@ -42,60 +42,60 @@ describe('test/cache.test.js', () => {
   });
 
   it('should return default value when there is no cache', async () => {
-    const value = await app.cache.get('name', 'default-name');
+    const value = await app.cache.get('foo', 'default');
 
-    assert(value === 'default-name');
+    assert(value === 'default');
   });
 
   it('should return and set default value when defaultValue is callable', async () => {
-    let value = await app.cache.get('name', () => {
-      return 'abel';
+    let value = await app.cache.get('foo', () => {
+      return 'bar';
     });
 
-    assert(value === 'abel');
+    assert(value === 'bar');
 
     // has been set
-    value = await app.cache.get('name');
-    assert(value === 'abel');
+    value = await app.cache.get('foo');
+    assert(value === 'bar');
   });
 
   it('should return/set default value when defaultValue is async callable', async () => {
-    let value = await app.cache.get('name', () => {
+    let value = await app.cache.get('foo', () => {
       return new Promise(resolve => {
         setTimeout(() => {
-          resolve('abel');
+          resolve('bar');
         }, 100);
       });
     });
 
-    assert(value === 'abel');
+    assert(value === 'bar');
 
     // has been set
-    value = await app.cache.get('name');
-    assert(value === 'abel');
+    value = await app.cache.get('foo');
+    assert(value === 'bar');
   });
 
   it('should cached when cache is set', async () => {
-    await app.cache.set('name', 'abel');
-    const has = await app.cache.has('name');
+    await app.cache.set('foo', 'bar');
+    const has = await app.cache.has('foo');
 
     assert(has === true);
   });
 
   it('should not cached when cache is not set', async () => {
-    await app.cache.del('name');
-    const has = await app.cache.has('name');
+    await app.cache.del('foo');
+    const has = await app.cache.has('foo');
 
     assert(has === false);
   });
 
   it('should return null when deleted', async () => {
-    let value = await app.cache.set('name', 'abel');
-    assert(value === 'abel');
+    let value = await app.cache.set('foo', 'bar');
+    assert(value === 'bar');
 
-    await app.cache.del('name');
+    await app.cache.del('foo');
 
-    value = await app.cache.get('name');
+    value = await app.cache.get('foo');
 
     assert(value === null);
   });

@@ -56,41 +56,41 @@ exports.cache = {
 ## Usage
 
 ```js
-await app.cache.set('name', 'abel', 60, { foo: 'bar' });
+await app.cache.set('foo', 'bar', 60, { foo: 'bar' });
 
-await app.cache.get('name'); // 'abel'
+await app.cache.get('foo'); // 'bar'
 
-await app.cache.has('name'); // true
+await app.cache.has('foo'); // true
 
-await app.cache.del('name');
-await app.cache.get('name', 'defaultName');  // 'defaultName'
+await app.cache.del('foo');
+await app.cache.get('foo', 'default');  // 'default'
 
-await app.cache.has('name'); // false
+await app.cache.has('foo'); // false
 
 // closure
-await app.cache.set('name', () => {
-  return 'abel';
-}); // 'abel'
+await app.cache.set('foo', () => {
+  return 'bar';
+}); // 'bar'
 
 // Promise
-await app.cache.set('name', () => {
-  return Promise.resolve('abel');
-});  // 'abel'
+await app.cache.set('foo', () => {
+  return Promise.resolve('bar');
+});  // 'bar'
 
 // Get cached value. If it's not existed, get and save the value from closure
-await app.cache.get('name', () => {
-  return 'abel';
-}); // 'abel'
+await app.cache.get('foo', () => {
+  return 'bar';
+}); // 'bar'
 
 // You can declare an `expire` option
-await app.cache.get('name', () => {
-  return 'abel';
+await app.cache.get('foo', () => {
+  return 'bar';
 }, 60, {
   foo: 'bar'
 });
 
-//  name was cached
-await app.cache.get('name'); // 'abel'
+//  foo was cached
+await app.cache.get('foo'); // 'bar'
 ```
 
 ### Store
@@ -100,7 +100,7 @@ Currently just support memory
 ```js
 const store = app.cache.store('memory');
 
-await store.set('name', 'abel');
+await store.set('foo', 'bar');
 ```
 
 ### Api

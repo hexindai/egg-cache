@@ -58,41 +58,41 @@ exports.cache = {
 ## 使用
 
 ```js
-await app.cache.set('name', 'abel', 60, { foo: 'bar' });
+await app.cache.set('foo', 'bar', 60, { foo: 'bar' });
 
-await app.cache.get('name'); // 'abel'
+await app.cache.get('foo'); // 'bar'
 
-await app.cache.has('name'); // true
+await app.cache.has('foo'); // true
 
-await app.cache.del('name');
-await app.cache.get('name', 'defaultName');  // 'defaultName'
+await app.cache.del('foo');
+await app.cache.get('foo', 'defaultfoo');  // 'defaultfoo'
 
-await app.cache.has('name'); // false
+await app.cache.has('foo'); // false
 
 // 使用闭包
-await app.cache.set('name', () => {
-  return 'abel';
-}); // 'abel'
+await app.cache.set('foo', () => {
+  return 'bar';
+}); // 'bar'
 
 // 异步结果
-await app.cache.set('name', () => {
-  return Promise.resolve('abel');
-});  // 'abel'
+await app.cache.set('foo', () => {
+  return Promise.resolve('bar');
+});  // 'bar'
 
-// 获取缓存，如果未存在则使用闭包中的结果生成，这在很多日常需求中十分有效
-await app.cache.get('name', () => {
-  return 'abel';
-}); // 'abel'
+// 获取缓存，如果不存在则使用闭包中的结果生成，这在很多日常需求中十分有效
+await app.cache.get('foo', () => {
+  return 'bar';
+}); // 'bar'
 
 // 和 set 一样，你也可以指定有效期和一些选项
-await app.cache.get('name', () => {
-  return 'abel';
+await app.cache.get('foo', () => {
+  return 'bar';
 }, 60, {
   foo: 'bar'
 });
 
-//  name 已被缓存
-await app.cache.get('name'); // 'abel'
+//  foo 已被缓存
+await app.cache.get('foo'); // 'bar'
 ```
 
 ### Store
@@ -102,7 +102,7 @@ await app.cache.get('name'); // 'abel'
 ```js
 const store = app.cache.store('memory');
 
-await store.set('name', 'abel');
+await store.set('foo', 'bar');
 ```
 
 ### Api
@@ -154,4 +154,4 @@ npm test
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/hexindai/egg-cache/LICENSE)
