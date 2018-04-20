@@ -65,7 +65,7 @@ await app.cache.get('foo'); // 'bar'
 await app.cache.has('foo'); // true
 
 await app.cache.del('foo');
-await app.cache.get('foo', 'defaultfoo');  // 'defaultfoo'
+await app.cache.get('foo', 'default');  // 'default'
 
 await app.cache.has('foo'); // false
 
@@ -137,6 +137,10 @@ await store.set('foo', 'bar');
 
 获取自定义 store
  - `name` Store 名称
+
+#### cache.reset();
+
+清空缓存
 
 ## 详细配置
 

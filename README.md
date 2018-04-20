@@ -91,6 +91,9 @@ await app.cache.get('foo', () => {
 
 //  foo was cached
 await app.cache.get('foo'); // 'bar'
+
+// clear cache
+await app.cache.reset();
 ```
 
 ### Store
@@ -120,6 +123,8 @@ Set Cache
 #### cache.has(name);
 
 #### cache.store(name, [options=null]);
+
+#### cache.reset();
 
 ## Default configuration
 
