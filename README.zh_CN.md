@@ -24,7 +24,7 @@
 
 通过简单的配置就可以直接使用基于 [cache-manager](https://github.com/BryanDonovan/node-cache-manager) 开发的 store
 * [支持的 Store 列表](https://github.com/BryanDonovan/node-cache-manager#store-engines)
-* [配置参考](#store)
+* [配置参考](#添加-store)
 
 ## 安装
 
@@ -32,9 +32,9 @@
 npm i egg-cache --save
 ```
 
-or
+或
 
-```
+```sh
 yarn add egg-cache
 ```
 

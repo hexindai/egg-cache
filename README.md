@@ -24,7 +24,7 @@ Based on [cache-manager](https://github.com/BryanDonovan/node-cache-manager)
 
 All store engine based on [cache-manager](https://github.com/BryanDonovan/node-cache-manager) can be used.
 * [Store engine](https://github.com/BryanDonovan/node-cache-manager#store-engines)
-* [Configuration reference](#store)
+* [Configuration reference](#add-store)
 
 [中文文档](README.zh_CN.md)
 
@@ -32,6 +32,12 @@ All store engine based on [cache-manager](https://github.com/BryanDonovan/node-c
 
 ```sh
 npm i egg-cache -S
+```
+
+or
+
+```sh
+yarn add egg-cache
 ```
 
 ## Configuration
