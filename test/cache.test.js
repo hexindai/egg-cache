@@ -26,6 +26,15 @@ describe('test/cache.test.js', () => {
     assert(value === 'bar');
   });
 
+  it('should set the value to memory', async () => {
+    await app.cache.set('foo', () => {
+      return Promise.resolve('bar');
+    });
+    const value = await app.cache.get('foo');
+
+    assert(value === 'bar');
+  });
+
   it('should cannot get value after expired', async () => {
     await app.cache.set('foo', 'bar', 1); // expires after 1 second
     const value = await app.cache.get('foo');
