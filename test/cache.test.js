@@ -50,10 +50,27 @@ describe('test/cache.test.js', () => {
     assert(nullValue === null);
   });
 
+  it('should cached when cache is set', async () => {
+    await app.cache.set('foo', 'bar');
+    const has = await app.cache.has('foo');
+
+    assert(has === true);
+  });
+
+  it('should not cached when cache is not set', async () => {
+    await app.cache.del('foo');
+    const has = await app.cache.has('foo');
+
+    assert(has === false);
+  });
+
   it('should return default value when there is no cache', async () => {
     const value = await app.cache.get('foo', 'default');
 
     assert(value === 'default');
+
+    // clear cache
+    await app.cache.del('foo');
   });
 
   it('should return and set default value when defaultValue is callable', async () => {
@@ -66,6 +83,9 @@ describe('test/cache.test.js', () => {
     // has been set
     value = await app.cache.get('foo');
     assert(value === 'bar');
+
+    // clear cache
+    await app.cache.del('foo');
   });
 
   it('should return/set default value when defaultValue is async callable', async () => {
@@ -82,20 +102,6 @@ describe('test/cache.test.js', () => {
     // has been set
     value = await app.cache.get('foo');
     assert(value === 'bar');
-  });
-
-  it('should cached when cache is set', async () => {
-    await app.cache.set('foo', 'bar');
-    const has = await app.cache.has('foo');
-
-    assert(has === true);
-  });
-
-  it('should not cached when cache is not set', async () => {
-    await app.cache.del('foo');
-    const has = await app.cache.has('foo');
-
-    assert(has === false);
   });
 
   it('should return null when deleted', async () => {
