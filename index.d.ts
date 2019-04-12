@@ -27,7 +27,7 @@ interface Store {
 }
 
 interface Cache extends Store {
-  reset: () => Promise<void>;
+  store: (name: string, options?: object) => Store;
 }
 
 declare module "egg" {
