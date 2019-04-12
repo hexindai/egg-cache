@@ -19,21 +19,19 @@ interface GetFunc {
 }
 
 interface Store {
-  set: (key: string, value: any) => Promise<any>;
-  get: (key: string) => Promise<void>;
+  set: SetFunc;
+  get: GetFunc;
   del: (key: string) => Promise<void>;
   has: (key: string) => Promise<boolean>;
+  reset: () => Promise<void>;
+}
+
+interface Cache extends Store {
+  reset: () => Promise<void>;
 }
 
 declare module "egg" {
   export interface Application {
-    cache: {
-      set: SetFunc;
-      get: GetFunc;
-      del: (key: string) => Promise<void>;
-      has: (key: string) => Promise<boolean>;
-      store: (name: string, options?: object) => Store;
-      reset: () => Promise<void>;
-    };
+    cache: Cache;
   }
 }
