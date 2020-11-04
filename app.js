@@ -1,5 +1,6 @@
 'use strict';
 const pro = require('process');
+const Store = require('./lib/store');
 
 async function cacheSync (app,data) {
   if (data.pid === pro.pid) {
@@ -7,29 +8,26 @@ async function cacheSync (app,data) {
   }
 
   switch (data.act) {
-  case 0: app.cache.del(data); break;
-  case 1:
-    if (data.ttl > 0) {
-      app.cache.set(data);
-    } else {
-      app.cache.set(data);
+  case 0: 
+    if( data.isMemSync === true ){
+      await app.cache.store('memory').del(data.name, data.isMemSync);
     }
+  break;
+  case 1:
+      if( data.options.isMemSync ){
+        await app.cache.store('memory').set( data.name,data.value,data.expire,data.options );
+      }
     break;
   default: break;
   }
-
 }
 
 
 module.exports = app => {
   app.cache = require('./lib/cache')(app);
-  const { default: defaultStore, stores } = app.config.cache;
-  if( defaultStore === 'memory' ) {
-    const key = ( stores.memory && stores.memory.syncKey ) ? stores.memory.syncKey : 'cacheSync';
-    process.on('message', msg => {
-      if (msg.action === key) {
-        cacheSync( app, msg.data );
-      }
-    });
-  }
+  process.on('message', msg => {
+    if (msg.action === Store.syncKey) {
+      cacheSync( app, msg.data );
+    }
+  });
 };
